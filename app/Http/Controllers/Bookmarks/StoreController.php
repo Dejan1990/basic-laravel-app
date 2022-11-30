@@ -8,32 +8,13 @@ use App\Models\Bookmark;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Bookmark\StoreRequest;
 use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
 {
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(StoreRequest $request): RedirectResponse
     {
-        $this->validate($request, [
-            'name' => [
-                'required',
-                'string',
-                'min:1',
-                'max:255',
-            ],
-            'url' => [
-                'required',
-                'url',
-            ],
-            'description' => [
-                'nullable',
-                'string',
-            ],
-            'tags' => [
-                'nullable',
-            ]
-        ]);
- 
         $bookmark = auth()->user()->bookmarks()->create([
             'name' => $request->get('name'),
             'url' => $request->get('url'),
