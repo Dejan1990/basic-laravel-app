@@ -17,4 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post(
+    'bookmarks',
+    App\Http\Controllers\Bookmarks\StoreController::class,
+)->middleware(['auth'])->name('bookmarks.store');
+
 require __DIR__.'/auth.php';
