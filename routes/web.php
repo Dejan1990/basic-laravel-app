@@ -22,4 +22,9 @@ Route::post(
     App\Http\Controllers\Bookmarks\StoreController::class,
 )->middleware(['auth'])->name('bookmarks.store');
 
+Route::delete(
+    'bookmarks/{bookmark}',
+    App\Http\Controllers\Bookmarks\DeleteController::class,
+)->middleware(['auth'])->name('bookmarks.delete');
+
 require __DIR__.'/auth.php';
